@@ -29,6 +29,7 @@ class Vector3D(val x: Double, val y: Double, val z: Double) {
   /** defines the cross product between two vectors. */
   def X(v: Vector3D): Vector3D = new Vector3D(y * v.z - v.y * z, z * v.x - v.z * x, x * v.y - v.x * y)
 
+  def toStringRep = x + " " + y + " " + z
   override def toString = "Vector(" + x + ", " + y + ", " + z + ")"
 }
 
