@@ -1,6 +1,12 @@
+package graph.geom
+
 import scala.collection.mutable.ArrayBuffer
 import org.junit.Test
 import org.junit.Assert._
+import java.io.PrintWriter
+import java.io.File
+import Mesh.toBuffer
+import org.junit.Test
 
 class MeshTest {
 
@@ -23,5 +29,13 @@ class MeshTest {
     m += t
     m += new Triangle(Vector3D.X, Vector3D.Z, Vector3D.ORIGIN)
     println(Mesh.writeAsSTL(m))
+  }
+
+  @Test def stlwrite2 = {
+    var m = emptyMesh
+    m += t
+    m += new Triangle(Vector3D.X, Vector3D.Z, Vector3D.ORIGIN)
+    val p = new PrintWriter(new File("test.stl"))
+    println(Mesh.writeAsSTL(m, p))
   }
 }

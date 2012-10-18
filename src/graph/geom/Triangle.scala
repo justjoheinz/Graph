@@ -1,3 +1,7 @@
+package graph.geom
+
+import graph.geom.Vector3D
+
 class Triangle(val v1: Vector3D, val v2: Vector3D, val v3: Vector3D) {
 
   def area(): Double = 0.5 * ((v3 - v1) X (v3 - v2)).len

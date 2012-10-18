@@ -1,3 +1,5 @@
+package graph.geom
+
 class Vector3D(val x: Double, val y: Double, val z: Double) {
 
   def +(v: Vector3D): Vector3D = new Vector3D(x + v.x, y + v.y, z + v.z)

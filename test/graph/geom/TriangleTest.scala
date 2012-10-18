@@ -1,5 +1,8 @@
+package graph.geom
+
 import org.junit.Test
 import org.junit.Assert._
+import org.junit.Test
 
 class TriangleTest {
 

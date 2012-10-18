@@ -1,5 +1,9 @@
 
 
+package graph.geom
+
+import java.io.PrintWriter
+
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.StringBuilder
 
@@ -23,16 +27,20 @@ object Mesh {
   implicit def toBuffer(t: Mesh): ArrayBuffer[Triangle] = t.self
 
   def writeAsSTL(m: Mesh): String = {
-    var buffer: String = new String()
-    buffer += "solid unknown\n"
-    m.foreach(t => buffer += "facet normal " + t.normalVector.toStringRep + "\n"
+    var buffer: StringBuilder = new StringBuilder()
+    buffer ++= "solid unknown\n"
+    m.foreach(t => buffer ++= "facet normal " + t.normalVector.toStringRep + "\n"
       + "outer loop\n"
       + "\tvertex " + t.v1.toStringRep + "\n"
       + "\tvertex " + t.v2.toStringRep + "\n"
       + "\tvertex " + t.v3.toStringRep + "\n"
       + "endloop\n")
-    buffer += "endfacet\n"
-    buffer += "endsolid\n"
-    buffer
+    buffer ++= "endfacet\n"
+    buffer ++= "endsolid\n"
+    buffer.mkString
+  }
+
+  def writeAsSTL(m: Mesh, p: PrintWriter): Unit = {
+    p.write(Mesh.writeAsSTL(m))
   }
 }
