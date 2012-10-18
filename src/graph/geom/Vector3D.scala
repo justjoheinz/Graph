@@ -1,5 +1,7 @@
 package graph.geom
 
+import Array._
+
 class Vector3D(val x: Double, val y: Double, val z: Double) {
 
   def +(v: Vector3D): Vector3D = new Vector3D(x + v.x, y + v.y, z + v.z)
@@ -41,5 +43,7 @@ object Vector3D {
   val Z = new Vector3D(0, 0, 1)
   val ORIGIN = new Vector3D(0, 0, 0)
   val DELTA = 0.0001
+
+  implicit def toArray(v: Vector3D): Array[Double] = Array(v.x, v.y, v.z)
 
 }
