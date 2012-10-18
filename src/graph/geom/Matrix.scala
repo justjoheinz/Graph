@@ -29,19 +29,18 @@ class Matrix(val self: Array[Array[Double]]) {
 
   /** multiply matrix with a vector. */
   def *(v: Vector3D): Vector3D = {
-    new Vector3D(
+    Vector3D(
       this(0, 0) * v.x + this(1, 0) * v.y + this(2, 0) * v.z,
       this(0, 1) * v.x + this(1, 1) * v.y + this(2, 1) * v.z,
       this(0, 2) * v.x + this(1, 2) * v.y + this(2, 2) * v.z)
   }
 
   def *(m: Matrix): Matrix = {
-    val r: Matrix = Matrix.UNITY
+    val r = Array.ofDim[Double](3, 3)
     for (i <- 0 to 2) {
       for (j <- 0 to 2) {
-        r(i)(j) = 0
         for (k <- 0 to 2)
-          r(i)(j) += this(i)(k) * m(k)(j)
+          r(i)(j) = r(i)(j) + this(i)(k) * m(k)(j)
       }
     }
     r
