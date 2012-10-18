@@ -35,6 +35,18 @@ class Matrix(val self: Array[Array[Double]]) {
       this(0, 2) * v.x + this(1, 2) * v.y + this(2, 2) * v.z)
   }
 
+  def *(m: Matrix): Matrix = {
+    val r: Matrix = Matrix.UNITY
+    for (i <- 0 to 2) {
+      for (j <- 0 to 2) {
+        r(i)(j) = 0
+        for (k <- 0 to 2)
+          r(i)(j) += this(i)(k) * m(k)(j)
+      }
+    }
+    r
+  }
+
   def apply(i: Int, j: Int) = self(i)(j)
 
   def update(i: Int, j: Int, v: Double) = self(i)(j) = v
@@ -44,6 +56,21 @@ class Matrix(val self: Array[Array[Double]]) {
 object Matrix {
 
   val UNITY: Matrix = Array.tabulate[Double](3, 3)((n1, n2) => if (n1 == n2) 1.0 else 0.0)
+
+  def rotateX(angle: Double): Matrix = new Matrix(
+    1, 0, 0,
+    0, math.cos(angle), -math.sin(angle),
+    0, math.sin(angle), math.cos(angle))
+
+  def rotateY(angle: Double): Matrix = new Matrix(
+    math.cos(angle), 0, -math.sin(angle),
+    0, 1, 0,
+    math.sin(angle), 0, math.cos(angle))
+
+  def rotateZ(angle: Double): Matrix = new Matrix(
+    math.cos(angle), -math.sin(angle), 0,
+    math.sin(angle), math.cos(angle), 0,
+    0, 0, 1)
 
   implicit def toMatrix(a: Array[Array[Double]]): Matrix = new Matrix(a)
 
