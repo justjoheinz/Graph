@@ -1,8 +1,8 @@
 package graph.geom
 
-import scala.Array._
+import math._
 
-class Matrix(val self: Array[Array[Double]]) {
+case class Matrix(val self: Array[Array[Double]]) {
 
   def this(a00: Double, a01: Double, a02: Double,
     a10: Double, a11: Double, a12: Double,
@@ -58,17 +58,17 @@ object Matrix {
 
   def rotateX(angle: Double): Matrix = new Matrix(
     1, 0, 0,
-    0, math.cos(angle), -math.sin(angle),
-    0, math.sin(angle), math.cos(angle))
+    0, cos(angle), -sin(angle),
+    0, sin(angle), cos(angle))
 
   def rotateY(angle: Double): Matrix = new Matrix(
-    math.cos(angle), 0, -math.sin(angle),
+    cos(angle), 0, -sin(angle),
     0, 1, 0,
-    math.sin(angle), 0, math.cos(angle))
+    sin(angle), 0, cos(angle))
 
   def rotateZ(angle: Double): Matrix = new Matrix(
-    math.cos(angle), -math.sin(angle), 0,
-    math.sin(angle), math.cos(angle), 0,
+    cos(angle), -sin(angle), 0,
+    sin(angle), cos(angle), 0,
     0, 0, 1)
 
   implicit def toMatrix(a: Array[Array[Double]]): Matrix = new Matrix(a)

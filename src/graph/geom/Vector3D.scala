@@ -1,6 +1,6 @@
 package graph.geom
 
-import Array._
+import scala.math.acos
 
 case class Vector3D(x: Double, y: Double, z: Double) {
 
@@ -26,7 +26,7 @@ case class Vector3D(x: Double, y: Double, z: Double) {
   def dot(v: Vector3D): Double = x * v.x + y * v.y + z * v.z
 
   /** returns the angle in radians between two vectors. */
-  def angle(v: Vector3D): Double = math.acos(Vector3D.this.dot(v) / (Vector3D.this.len * v.len))
+  def angle(v: Vector3D): Double = acos(Vector3D.this.dot(v) / (Vector3D.this.len * v.len))
 
   def unary_-(): Vector3D = Vector3D(-x, -y, -z)
 
