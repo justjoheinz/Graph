@@ -16,7 +16,7 @@ case class Matrix(val self: Array[Array[Double]]) {
 
   def this() = this(0, 0, 0, 0, 0, 0, 0, 0, 0)
 
-  override def toString() = {
+  override def toString = {
     val buffer = new StringBuilder()
     for (i <- 0 to 2) {
       for (j <- 0 to 2) {
@@ -28,14 +28,15 @@ case class Matrix(val self: Array[Array[Double]]) {
   }
 
   /** multiply matrix with a vector. */
-  def *(v: Vector3D): Vector3D = {
+  def *(v: Vector3D) = {
     Vector3D(
       this(0, 0) * v.x + this(1, 0) * v.y + this(2, 0) * v.z,
       this(0, 1) * v.x + this(1, 1) * v.y + this(2, 1) * v.z,
       this(0, 2) * v.x + this(1, 2) * v.y + this(2, 2) * v.z)
   }
 
-  def *(m: Matrix): Matrix = {
+  /** calculate matrix product. */
+  def *(m: Matrix) = {
     val r = Array.ofDim[Double](3, 3)
     for (i <- 0 to 2) {
       for (j <- 0 to 2) {
@@ -56,17 +57,17 @@ object Matrix {
 
   val UNITY: Matrix = Array.tabulate[Double](3, 3)((n1, n2) => if (n1 == n2) 1.0 else 0.0)
 
-  def rotateX(angle: Double): Matrix = new Matrix(
+  def rotateX(angle: Double) = new Matrix(
     1, 0, 0,
     0, cos(angle), -sin(angle),
     0, sin(angle), cos(angle))
 
-  def rotateY(angle: Double): Matrix = new Matrix(
+  def rotateY(angle: Double) = new Matrix(
     cos(angle), 0, -sin(angle),
     0, 1, 0,
     sin(angle), 0, cos(angle))
 
-  def rotateZ(angle: Double): Matrix = new Matrix(
+  def rotateZ(angle: Double) = new Matrix(
     cos(angle), -sin(angle), 0,
     sin(angle), cos(angle), 0,
     0, 0, 1)
