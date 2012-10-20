@@ -22,19 +22,10 @@ case class Mesh(name: String, self: ArrayBuffer[Triangle]) extends Proxy {
     self map (_ * scale)
   }
 
-}
-
-object Mesh {
-  def apply(t: Triangle*): Mesh = ArrayBuffer(t: _*)
-
-  implicit def toMesh(b: ArrayBuffer[Triangle]): Mesh = new Mesh("", b)
-
-  implicit def toBuffer(t: Mesh): ArrayBuffer[Triangle] = t.self
-
-  def writeAsSTL(m: Mesh): String = {
+  def toSTL = {
     var buffer: StringBuilder = new StringBuilder()
     buffer ++= "solid unknown\n"
-    m.foreach(t => buffer ++= "facet normal " + t.normalVector.toStringRep + "\n"
+    self.foreach(t => buffer ++= "facet normal " + t.normalVector.toStringRep + "\n"
       + "outer loop\n"
       + "\tvertex " + t.v1.toStringRep + "\n"
       + "\tvertex " + t.v2.toStringRep + "\n"
@@ -45,7 +36,16 @@ object Mesh {
     buffer.mkString
   }
 
+}
+
+object Mesh {
+  def apply(t: Triangle*): Mesh = ArrayBuffer(t: _*)
+
+  implicit def toMesh(b: ArrayBuffer[Triangle]): Mesh = new Mesh("", b)
+
+  implicit def toBuffer(t: Mesh): ArrayBuffer[Triangle] = t.self
+
   def writeAsSTL(m: Mesh, p: PrintWriter): Unit = {
-    p.write(Mesh.writeAsSTL(m))
+    p.write(m.toSTL)
   }
 }

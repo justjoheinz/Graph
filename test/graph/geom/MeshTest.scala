@@ -28,7 +28,7 @@ class MeshTest {
     var m = emptyMesh
     m += t
     m += new Triangle(Vector3D.X, Vector3D.Z, Vector3D.ORIGIN)
-    println(Mesh.writeAsSTL(m))
+    println(m.toSTL)
   }
 
   @Test def stlwrite2 = {
