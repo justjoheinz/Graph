@@ -10,7 +10,7 @@ import org.junit.Test
 
 class MeshTest {
 
-  val emptyMesh: Mesh = Mesh("", ArrayBuffer.empty[Triangle])
+  val emptyMesh: Mesh = Mesh(None, ArrayBuffer.empty[Triangle])
 
   val t: Triangle = new Triangle(Vector3D.X, Vector3D.Y, Vector3D.ORIGIN)
 

@@ -4,18 +4,6 @@ import math._
 
 case class Matrix(val self: Array[Array[Double]]) {
 
-  def this(a00: Double, a01: Double, a02: Double,
-    a10: Double, a11: Double, a12: Double,
-    a20: Double, a21: Double, a22: Double) = {
-    this(Array(Array(a00, a01, a02), Array(a10, a11, a12), Array(a20, a21, a22)))
-  }
-
-  def this(v1: Vector3D, v2: Vector3D, v3: Vector3D) = {
-    this(Array(v1, v2, v3))
-  }
-
-  def this() = this(0, 0, 0, 0, 0, 0, 0, 0, 0)
-
   override def toString = {
     val buffer = new StringBuilder()
     for (i <- 0 to 2) {
@@ -57,20 +45,26 @@ object Matrix {
 
   val UNITY: Matrix = Array.tabulate[Double](3, 3)((n1, n2) => if (n1 == n2) 1.0 else 0.0)
 
-  def rotateX(angle: Double) = new Matrix(
+  def rotateX(angle: Double) = Matrix(
     1, 0, 0,
     0, cos(angle), -sin(angle),
     0, sin(angle), cos(angle))
 
-  def rotateY(angle: Double) = new Matrix(
+  def rotateY(angle: Double) = Matrix(
     cos(angle), 0, -sin(angle),
     0, 1, 0,
     sin(angle), 0, cos(angle))
 
-  def rotateZ(angle: Double) = new Matrix(
+  def rotateZ(angle: Double) = Matrix(
     cos(angle), -sin(angle), 0,
     sin(angle), cos(angle), 0,
     0, 0, 1)
+
+  def apply(a00: Double, a01: Double, a02: Double,
+    a10: Double, a11: Double, a12: Double,
+    a20: Double, a21: Double, a22: Double) = new Matrix(Array(Array(a00, a01, a02), Array(a10, a11, a12), Array(a20, a21, a22)))
+
+  def apply(v1: Vector3D, v2: Vector3D, v3: Vector3D) = new Matrix(Array(v1, v2, v3))
 
   implicit def toMatrix(a: Array[Array[Double]]): Matrix = new Matrix(a)
 

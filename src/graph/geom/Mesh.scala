@@ -7,10 +7,10 @@ import java.io.PrintWriter
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.StringBuilder
 
-case class Mesh(name: String, self: ArrayBuffer[Triangle]) {
+case class Mesh(name: Option[String], self: ArrayBuffer[Triangle]) {
 
   /** construct an empty mesh. */
-  def this() = this("", ArrayBuffer.empty[Triangle])
+  def this() = this(None, ArrayBuffer.empty[Triangle])
 
   /** move each face of the map along the given vector */
   def +(vec: Vector3D): Mesh = {
@@ -24,7 +24,7 @@ case class Mesh(name: String, self: ArrayBuffer[Triangle]) {
 
   def toSTL = {
     var buffer: StringBuilder = new StringBuilder()
-    buffer ++= "solid unknown\n"
+    buffer ++= "solid " + name.getOrElse("untitled")
     self.foreach(t => buffer ++= "facet normal " + t.normalVector.toStringRep + "\n"
       + "outer loop\n"
       + "\tvertex " + t.v1.toStringRep + "\n"
@@ -41,7 +41,7 @@ case class Mesh(name: String, self: ArrayBuffer[Triangle]) {
 object Mesh {
   def apply(t: Triangle*): Mesh = ArrayBuffer(t: _*)
 
-  implicit def toMesh(b: ArrayBuffer[Triangle]): Mesh = new Mesh("", b)
+  implicit def toMesh(b: ArrayBuffer[Triangle]): Mesh = new Mesh(None, b)
 
   implicit def toBuffer(t: Mesh): ArrayBuffer[Triangle] = t.self
 
