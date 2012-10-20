@@ -7,7 +7,7 @@ import java.io.PrintWriter
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.StringBuilder
 
-case class Mesh(name: String, self: ArrayBuffer[Triangle]) extends Proxy {
+case class Mesh(name: String, self: ArrayBuffer[Triangle]) {
 
   /** construct an empty mesh. */
   def this() = this("", ArrayBuffer.empty[Triangle])
