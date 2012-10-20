@@ -10,12 +10,12 @@ import org.junit.Test
 
 class MeshTest {
 
-  val emptyMesh: Mesh = new Mesh("", ArrayBuffer.empty[Triangle])
+  val emptyMesh: Mesh = Mesh("", ArrayBuffer.empty[Triangle])
 
   val t: Triangle = new Triangle(Vector3D.X, Vector3D.Y, Vector3D.ORIGIN)
 
   @Test def transform =
-    assertEquals(emptyMesh, emptyMesh.transform(Vector3D.X))
+    assertEquals(emptyMesh, emptyMesh + Vector3D.X)
 
   @Test def sizeTest = {
     var m = emptyMesh

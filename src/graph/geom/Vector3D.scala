@@ -42,7 +42,6 @@ object Vector3D {
   val Y = Vector3D(0, 1, 0)
   val Z = Vector3D(0, 0, 1)
   val ORIGIN = Vector3D(0, 0, 0)
-  val DELTA = 0.0001
 
   implicit def toArray(v: Vector3D): Array[Double] = Array(v.x, v.y, v.z)
 

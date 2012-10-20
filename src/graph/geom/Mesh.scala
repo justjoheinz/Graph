@@ -7,14 +7,19 @@ import java.io.PrintWriter
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.StringBuilder
 
-class Mesh(val name: String, val self: ArrayBuffer[Triangle]) extends Proxy {
+case class Mesh(name: String, self: ArrayBuffer[Triangle]) extends Proxy {
 
   /** construct an empty mesh. */
   def this() = this("", ArrayBuffer.empty[Triangle])
 
   /** move each face of the map along the given vector */
-  def transform(vec: Vector3D): Mesh = {
-    this.map(_ + vec)
+  def +(vec: Vector3D): Mesh = {
+    self map (_ + vec)
+  }
+
+  /** scale the mesh by a given factor. */
+  def *(scale: Double): Mesh = {
+    self map (_ * scale)
   }
 
 }
