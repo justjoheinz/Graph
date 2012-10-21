@@ -10,32 +10,26 @@ import org.junit.Test
 
 class MeshTest {
 
-  val emptyMesh: Mesh = Mesh(None, ArrayBuffer.empty[Triangle])
-
   val t: Triangle = new Triangle(Vector3D.X, Vector3D.Y, Vector3D.ORIGIN)
+  val emptyMesh: Mesh = Seq.empty
+  val m: Mesh = Seq(t, new Triangle(Vector3D.X, Vector3D.Z, Vector3D.ORIGIN))
 
-  @Test def transform =
-    assertEquals(emptyMesh, emptyMesh + Vector3D.X)
+  @Test def transform = {
+    val result: Mesh = Seq(t + Vector3D.X, new Triangle(Vector3D.X, Vector3D.Z, Vector3D.ORIGIN) + Vector3D.X)
+    assertEquals(result, m + Vector3D.X)
+  }
 
   @Test def sizeTest = {
-    var m = emptyMesh
-    m += t
-    m += new Triangle(Vector3D.X, Vector3D.Z, Vector3D.ORIGIN)
     assertEquals(2, m.size)
   }
 
   @Test def stlwrite = {
-    var m = emptyMesh
-    m += t
-    m += new Triangle(Vector3D.X, Vector3D.Z, Vector3D.ORIGIN)
     println(m.toSTL)
   }
 
   @Test def stlwrite2 = {
-    var m = emptyMesh
-    m += t
-    m += new Triangle(Vector3D.X, Vector3D.Z, Vector3D.ORIGIN)
     val p = new PrintWriter(new File("test.stl"))
-    println(Mesh.writeAsSTL(m, p))
+    p.print(m.toSTL)
+    p.close()
   }
 }

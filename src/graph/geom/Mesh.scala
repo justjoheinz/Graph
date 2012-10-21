@@ -1,37 +1,37 @@
-
-
 package graph.geom
 
 import java.io.PrintWriter
 
-import scala.collection.mutable.ArrayBuffer
-import scala.collection.mutable.StringBuilder
-
-case class Mesh(name: Option[String], self: ArrayBuffer[Triangle]) {
+case class Mesh(name: Option[String], self: Seq[Triangle]) {
 
   /** construct an empty mesh. */
-  def this() = this(None, ArrayBuffer.empty[Triangle])
+  def this() = this(None, Seq.empty)
 
   /** move each face of the map along the given vector */
   def +(vec: Vector3D): Mesh = {
-    self map (_ + vec)
+    self.par.map(_ + vec).seq
   }
 
   /** scale the mesh by a given factor. */
   def *(scale: Double): Mesh = {
-    self map (_ * scale)
+    self.par.map(_ * scale).seq
+  }
+
+  def *(matrix: Matrix): Mesh = {
+    self.par.map(_ * matrix).seq
   }
 
   def toSTL = {
     var buffer: StringBuilder = new StringBuilder()
     buffer ++= "solid " + name.getOrElse("untitled")
+    buffer ++= "\n"
     self.foreach(t => buffer ++= "facet normal " + t.normalVector.toStringRep + "\n"
       + "outer loop\n"
       + "\tvertex " + t.v1.toStringRep + "\n"
       + "\tvertex " + t.v2.toStringRep + "\n"
       + "\tvertex " + t.v3.toStringRep + "\n"
-      + "endloop\n")
-    buffer ++= "endfacet\n"
+      + "endloop\n"
+      + "endfacet\n")
     buffer ++= "endsolid\n"
     buffer.mkString
   }
@@ -39,11 +39,11 @@ case class Mesh(name: Option[String], self: ArrayBuffer[Triangle]) {
 }
 
 object Mesh {
-  def apply(t: Triangle*): Mesh = ArrayBuffer(t: _*)
+  def apply(t: Triangle*): Mesh = Seq(t: _*)
 
-  implicit def toMesh(b: ArrayBuffer[Triangle]): Mesh = new Mesh(None, b)
+  implicit def toMesh(b: Seq[Triangle]): Mesh = new Mesh(None, b)
 
-  implicit def toBuffer(t: Mesh): ArrayBuffer[Triangle] = t.self
+  implicit def toBuffer(t: Mesh): Seq[Triangle] = t.self
 
   def writeAsSTL(m: Mesh, p: PrintWriter): Unit = {
     p.write(m.toSTL)
