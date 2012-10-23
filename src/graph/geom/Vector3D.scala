@@ -23,10 +23,10 @@ case class Vector3D(x: Double, y: Double, z: Double) {
   }
 
   /** calculates the dot product between two vectors. */
-  def dot(v: Vector3D): Double = x * v.x + y * v.y + z * v.z
+  def *(v: Vector3D): Double = x * v.x + y * v.y + z * v.z
 
   /** returns the angle in radians between two vectors. */
-  def angle(v: Vector3D) = acos(Vector3D.this.dot(v) / (len * v.len))
+  def angle(v: Vector3D) = acos(this * v / (len * v.len))
 
   /** return the inverse vector. */
   def unary_-() = Vector3D(-x, -y, -z)
@@ -44,6 +44,7 @@ object Vector3D {
   val Z = Vector3D(0, 0, 1)
   val ORIGIN = Vector3D(0, 0, 0)
 
+  implicit def toVector(v: (Double, Double, Double)): Vector3D = Vector3D(v._1, v._2, v._3)
   implicit def toArray(v: Vector3D): Array[Double] = Array(v.x, v.y, v.z)
 
 }
