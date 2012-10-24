@@ -6,6 +6,8 @@ import org.junit.Test
 
 class VectorTest {
 
+  val scalar = 2.0
+
   @Test def lenX() = {
     assertEquals("Unit vector has length 1.0", Vector3D.X.len, 1.0, GraphConst.DELTA)
   }
@@ -25,13 +27,13 @@ class VectorTest {
     assertEquals(Vector3D.ORIGIN.z, 0, GraphConst.DELTA)
   }
   @Test def scaleX = {
-    assertEquals((Vector3D.X * 2.0).x, 2.0, GraphConst.DELTA)
+    assertEquals((scalar * Vector3D.X).x, 2.0, GraphConst.DELTA)
   }
   @Test def scaleY = {
-    assertEquals((Vector3D.Y * 2.0).y, 2.0, GraphConst.DELTA)
+    assertEquals((scalar * Vector3D.Y).y, 2.0, GraphConst.DELTA)
   }
   @Test def scaleZ = {
-    assertEquals((Vector3D.Z * 2.0).z, 2.0, GraphConst.DELTA)
+    assertEquals((scalar * Vector3D.Z).z, 2.0, GraphConst.DELTA)
   }
 
   @Test def angle1 = {

@@ -13,13 +13,10 @@ case class Vector3D(x: Double, y: Double, z: Double) {
   /** calculate the distance between two vectors imagined as points. */
   def distance(v: Vector3D) = (v - this).len
 
-  /** multiplies this vector with a scalar value. */
-  def *(scalar: Double): Vector3D = Vector3D(x * scalar, y * scalar, z * scalar)
-
   /** returns the unified vector of len == 1 */
   def normalize = {
-    val length: Double = 1.0 / len
-    this * length
+    val length = 1.0 / len
+    length * this
   }
 
   /** calculates the dot product between two vectors. */

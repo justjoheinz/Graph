@@ -1,9 +1,8 @@
 package graph.geom
-import math.abs
 
 case class Plane(point: Vector3D, normal: Vector3D) {
 
-  def isInPlane(r: Vector3D): Boolean = abs(normal * (r - point)) <= GraphConst.DELTA
+  def isInPlane(r: Vector3D) = (0.0) =~= (normal * (r - point))
   def isInPlane(s: Segment): Boolean = isInPlane(s.direction)
 
   def distance(p: Vector3D) = (p - point) * normal / normal.len
@@ -11,12 +10,12 @@ case class Plane(point: Vector3D, normal: Vector3D) {
   /**
    * move plane d units along the normal vector
    */
-  def +(d: Double): Plane = Plane(point + (normal.normalize) * d, normal)
+  def +(d: Scalar): Plane = Plane(point + d * (normal.normalize), normal)
 
   /**
    * move plane d units along the normal vector
    */
-  def -(d: Double): Plane = Plane(point - (normal.normalize) * d, normal)
+  def -(d: Scalar): Plane = Plane(point - d * (normal.normalize), normal)
 }
 
 object Plane {

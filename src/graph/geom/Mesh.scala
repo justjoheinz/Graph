@@ -12,11 +12,6 @@ case class Mesh(name: Option[String], self: Seq[Triangle]) {
     self.par.map(_ + vec).seq
   }
 
-  /** scale the mesh by a given factor. */
-  def *(scale: Double): Mesh = {
-    self.par.map(_ * scale).seq
-  }
-
   def *(matrix: Matrix): Mesh = {
     self.par.map(_ * matrix).seq
   }

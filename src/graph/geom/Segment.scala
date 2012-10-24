@@ -8,7 +8,7 @@ case class Segment(p1: Vector3D, p2: Vector3D) {
 
   def direction = (p2 - p1)
 
-  def perpendicular(s: Segment) = abs(direction * s.direction) <= GraphConst.DELTA
+  def perpendicular(s: Segment) = (direction * s.direction) =~= 0.0
 
 }
 
