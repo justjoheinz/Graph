@@ -1,9 +1,11 @@
 package graph.geom
 
 import scala.io.Source
+
 import scala.util.parsing.combinator.lexical.StdLexical
 import scala.util.parsing.combinator.syntactical.StandardTokenParsers
 
+/** A parser for Ascii STL files delivering a Mesh */
 class STLAsciiReader extends StandardTokenParsers {
 
   override val lexical = new ExprLexical

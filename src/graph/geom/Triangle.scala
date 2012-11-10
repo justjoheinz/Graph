@@ -1,5 +1,6 @@
 package graph.geom
 
+/** A triangle in 3D space represented by 3 vectors. */
 case class Triangle(v1: Vector3D, v2: Vector3D, v3: Vector3D) {
 
   def area: Double = 0.5 * ((v3 - v1) X (v3 - v2)).len

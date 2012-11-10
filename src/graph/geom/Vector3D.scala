@@ -2,6 +2,7 @@ package graph.geom
 
 import scala.math.acos
 
+/** A Vector class to represent a 3D vector consisting of a coordinate with x,y and z values. */
 case class Vector3D(x: Double, y: Double, z: Double) {
 
   def +(v: Vector3D) = Vector3D(x + v.x, y + v.y, z + v.z)

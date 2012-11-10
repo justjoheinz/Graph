@@ -2,6 +2,7 @@ package graph.geom
 
 import math.abs
 
+/** A line segment represented by two vectors denoting the end points of the segment. */
 case class Segment(p1: Vector3D, p2: Vector3D) {
 
   def len = direction.len

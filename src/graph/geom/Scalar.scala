@@ -1,5 +1,6 @@
 package graph.geom
 
+/** A scalar is used to multiply vectors and matrixes. */
 case class Scalar(self: Double) extends Proxy {
 
   /** multiplies this vector with a scalar value. */

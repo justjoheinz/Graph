@@ -2,6 +2,7 @@ package graph.geom
 
 import java.io.PrintWriter
 
+/** A Mesh consists of any number of triangles. */
 case class Mesh(name: Option[String], self: Seq[Triangle]) {
 
   /** construct an empty mesh. */

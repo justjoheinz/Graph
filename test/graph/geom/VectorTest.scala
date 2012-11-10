@@ -9,38 +9,38 @@ class VectorTest {
   val scalar = 2.0
 
   @Test def lenX() = {
-    assertEquals("Unit vector has length 1.0", Vector3D.X.len, 1.0, GraphConst.DELTA)
+    assertTrue("Unit vector has length 1.0", Vector3D.X.len =~= 1.0)
   }
   @Test def lenY() = {
-    assertEquals("Unit vector has length 1.0", Vector3D.Y.len, 1.0, GraphConst.DELTA)
+    assertTrue("Unit vector has length 1.0", Vector3D.Y.len =~= 1.0)
   }
   @Test def lenZ() = {
-    assertEquals("Unit vector has length 1.0", Vector3D.Z.len, 1.0, GraphConst.DELTA)
+    assertTrue("Unit vector has length 1.0", Vector3D.Z.len =~= 1.0)
   }
   @Test def originX = {
-    assertEquals(Vector3D.ORIGIN.x, 0, GraphConst.DELTA)
+    assertTrue(Vector3D.ORIGIN.x =~= 0)
   }
   @Test def originY = {
-    assertEquals(Vector3D.ORIGIN.y, 0, GraphConst.DELTA)
+    assertTrue(Vector3D.ORIGIN.y =~= 0)
   }
   @Test def originZ = {
-    assertEquals(Vector3D.ORIGIN.z, 0, GraphConst.DELTA)
+    assertTrue(Vector3D.ORIGIN.z =~= 0)
   }
   @Test def scaleX = {
-    assertEquals((scalar * Vector3D.X).x, 2.0, GraphConst.DELTA)
+    assertTrue((scalar * Vector3D.X).x =~= 2.0)
   }
   @Test def scaleY = {
-    assertEquals((scalar * Vector3D.Y).y, 2.0, GraphConst.DELTA)
+    assertTrue((scalar * Vector3D.Y).y =~= 2.0)
   }
   @Test def scaleZ = {
-    assertEquals((scalar * Vector3D.Z).z, 2.0, GraphConst.DELTA)
+    assertTrue((scalar * Vector3D.Z).z =~= 2.0)
   }
 
   @Test def angle1 = {
-    assertEquals(math.toDegrees(Vector3D.X.angle(Vector3D.Y)), 90.0, GraphConst.DELTA)
+    assertTrue(math.toDegrees(Vector3D.X.angle(Vector3D.Y)) =~= 90.0)
   }
 
   @Test def inverse =
-    assertEquals(-(Vector3D.X).x, -1.0, GraphConst.DELTA)
+    assertTrue(-(Vector3D.X).x =~= -1.0)
 
 }

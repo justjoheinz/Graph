@@ -2,6 +2,7 @@ package graph.geom
 
 import math._
 
+/** A 3x3 Matrix */
 case class Matrix(val self: Array[Array[Double]]) {
 
   override def toString = {
