@@ -1,5 +1,7 @@
 package graph.geom
 
+import graph.geom.util.Precision
+
 /** A scalar is used to multiply vectors and matrixes. */
 case class Scalar(self: Double) extends Proxy {
 

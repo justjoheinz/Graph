@@ -2,7 +2,7 @@ package graph.geom
 
 /** A plane in 3D space represented by a point in the plane and a normal vector. */
 case class Plane(point: Vector3D, normal: Vector3D) {
-
+  import Scalar._
   def isInPlane(r: Vector3D) = (0.0) =~= (normal * (r - point))
   def isInPlane(s: Segment): Boolean = isInPlane(s.direction)
 

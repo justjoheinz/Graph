@@ -1,7 +1,7 @@
 package graph.geom
+package util
 
 import scala.io.Source
-
 import scala.util.parsing.combinator.lexical.StdLexical
 import scala.util.parsing.combinator.syntactical.StandardTokenParsers
 
