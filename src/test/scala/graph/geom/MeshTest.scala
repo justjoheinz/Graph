@@ -7,6 +7,7 @@ import java.io.PrintWriter
 import java.io.File
 import Mesh.toBuffer
 import org.junit.Test
+import org.junit.runner.RunWith
 
 class MeshTest {
 
