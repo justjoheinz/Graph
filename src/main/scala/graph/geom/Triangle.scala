@@ -1,5 +1,7 @@
 package graph.geom
 
+import graph.geom.util.Precision
+
 /** A triangle in 3D space represented by 3 vectors. */
 case class Triangle(v1: Vector3D, v2: Vector3D, v3: Vector3D) {
 
@@ -11,7 +13,7 @@ case class Triangle(v1: Vector3D, v2: Vector3D, v3: Vector3D) {
 
   def *(m: Matrix): Triangle = Triangle(m * v1, m * v2, m * v3)
 
-  def isInPlane(v: Vector3D): Boolean = {
+  def isInPlane(v: Vector3D)(implicit p: Precision): Boolean = {
     (v - v1) * (normalVector) =~= 0.0
   }
 }

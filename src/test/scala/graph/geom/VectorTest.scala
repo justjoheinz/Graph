@@ -3,10 +3,13 @@ package graph.geom
 import org.junit.Test
 import org.junit.Assert._
 import org.junit.Test
+import graph.geom.util.Precision
 
 class VectorTest {
 
   val scalar = 2.0
+
+  implicit val p = Precision(0.0001)
 
   @Test def lenX() = {
     assertTrue("Unit vector has length 1.0", Vector3D.X.len =~= 1.0)

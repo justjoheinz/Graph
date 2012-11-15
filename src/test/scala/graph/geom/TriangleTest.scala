@@ -3,9 +3,11 @@ package graph.geom
 import org.junit.Test
 import org.junit.Assert._
 import org.junit.Test
+import graph.geom.util.Precision
 
 class TriangleTest {
 
+  implicit val p = Precision(0.0001)
   val v1 = new Vector3D(2, 0, 0)
   val v2 = new Vector3D(0, 3, 0)
   val v3 = new Vector3D(0, 0, 5)
