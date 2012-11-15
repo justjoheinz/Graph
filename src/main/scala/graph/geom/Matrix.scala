@@ -27,11 +27,8 @@ case class Matrix(val self: Array[Array[Double]]) {
   /** calculate matrix product. */
   def *(m: Matrix) = {
     val r = Array.ofDim[Double](3, 3)
-    for (i <- 0 to 2) {
-      for (j <- 0 to 2) {
-        for (k <- 0 to 2)
-          r(i)(j) = r(i)(j) + this(i)(k) * m(k)(j)
-      }
+    for (i <- 0 to 2; j <- 0 to 2; k <- 0 to 2) {
+      r(i)(j) = r(i)(j) + this(i)(k) * m(k)(j)
     }
     r
   }
